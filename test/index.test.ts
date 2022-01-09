@@ -3,7 +3,10 @@ import {
     IsExact,
     assert as ctcAssert,
 } from 'conditional-type-checks';
-import { assertNonNullable } from '../src';
+import {
+    assertNonNullable,
+    extractNonNullableEnvVar,
+} from '../src';
 
 describe('assertNonNullable', () => {
     beforeEach(() => {
@@ -27,6 +30,28 @@ describe('assertNonNullable', () => {
 
         assert.throw(
             () => assertNonNullable('B', B),
+        );
+    });
+});
+
+describe('extractNonNullableEnvVar', () => {
+    beforeEach(() => {
+        process.env.A = 'a';
+    });
+
+    afterEach(() => {
+        delete process.env.A;
+    });
+
+    it('should extract a predefined variable', () => {
+        const A = extractNonNullableEnvVar('A');
+
+        assert.equal(A, 'a');
+    });
+
+    it('should not should extract a non-defined variable', () => {
+        assert.throw(
+            () => extractNonNullableEnvVar('B'),
         );
     });
 });
