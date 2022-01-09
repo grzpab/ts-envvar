@@ -6,6 +6,7 @@ import {
 import {
     assertNonNullable,
     extractNonNullableEnvVar,
+    extractNumberEnvVar,
 } from '../src';
 
 describe('assertNonNullable', () => {
@@ -52,6 +53,36 @@ describe('extractNonNullableEnvVar', () => {
     it('should not should extract a non-defined variable', () => {
         assert.throw(
             () => extractNonNullableEnvVar('B'),
+        );
+    });
+});
+
+describe('extractNumberEnvVar', () => {
+    beforeEach(() => {
+        process.env.NUMBER = '2.1';
+        process.env.STRING = 'a';
+    });
+
+    afterEach(() => {
+        delete process.env.NUMBER;
+        delete process.env.STRING;
+    });
+
+    it('should extract a predefined variable holding a number', () => {
+        const NUMBER = extractNumberEnvVar('NUMBER');
+
+        assert.equal(NUMBER, 2.1);
+    });
+
+    it('should not should extract a predefined variable holding a string', () => {
+        assert.throw(
+            () => extractNumberEnvVar('STRING'),
+        );
+    });
+
+    it('should not should extract a non-defined variable', () => {
+        assert.throw(
+            () => extractNumberEnvVar('NON_DEFINED'),
         );
     });
 });
