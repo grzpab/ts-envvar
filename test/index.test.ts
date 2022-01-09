@@ -7,7 +7,7 @@ import {
     assertNonNullable,
     extractBooleanEnvVar,
     extractIntegerEnvVar,
-    extractNonNullableEnvVar,
+    extractStringEnvVar,
     extractNumberEnvVar,
 } from '../src';
 
@@ -47,14 +47,14 @@ describe('extractNonNullableEnvVar', () => {
     });
 
     it('should extract a predefined variable', () => {
-        const A = extractNonNullableEnvVar('A');
+        const A = extractStringEnvVar('A');
 
         assert.equal(A, 'a');
     });
 
     it('should not should extract a non-defined variable', () => {
         assert.throw(
-            () => extractNonNullableEnvVar('B'),
+            () => extractStringEnvVar('B'),
         );
     });
 });

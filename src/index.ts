@@ -9,7 +9,7 @@ export function assertNonNullable<T>(
     }
 }
 
-export function extractNonNullableEnvVar(
+export function extractStringEnvVar(
     key: keyof NodeJS.ProcessEnv,
 ): string {
     const value = process.env[key];
@@ -26,7 +26,7 @@ export function extractNonNullableEnvVar(
 export function extractNumberEnvVar(
     key: keyof NodeJS.ProcessEnv,
 ): number {
-    const stringValue = extractNonNullableEnvVar(key);
+    const stringValue = extractStringEnvVar(key);
 
     const numberValue = parseFloat(stringValue);
 
@@ -42,7 +42,7 @@ export function extractNumberEnvVar(
 export function extractIntegerEnvVar(
     key: keyof NodeJS.ProcessEnv,
 ): number {
-    const stringValue = extractNonNullableEnvVar(key);
+    const stringValue = extractStringEnvVar(key);
 
     const numberValue = parseInt(stringValue, 10);
 
