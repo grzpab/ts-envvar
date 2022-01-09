@@ -1,0 +1,9 @@
+.idea
+.nyc_output
+node_modules
+test
+.eslintrc.json
+.gitignore
+.mocharc.yml
+yarn.lock
+!dist

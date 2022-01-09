@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "declaration": true,
+        "module": "commonjs",
+        "outDir": "./dist",
+        "sourceMap": false,
+        "allowJs": true,
+        "moduleResolution": "node",
+        "rootDir": ".",
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "noUnusedLocals": true,
+        "alwaysStrict": true,
+        "lib": [
+            "es2020"
+        ],
+        "baseUrl": ".",
+        "strict": false,
+        "removeComments": true
+    },
+    "include": [
+        "src/**/*.ts",
+        "test/**/*.ts"
+    ],
+    "exclude": [
+        "./node_modules"
+    ]
+}
