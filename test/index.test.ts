@@ -5,6 +5,7 @@ import {
 } from 'conditional-type-checks';
 import {
     assertNonNullable,
+    extractBooleanEnvVar,
     extractIntegerEnvVar,
     extractNonNullableEnvVar,
     extractNumberEnvVar,
@@ -100,9 +101,9 @@ describe('extractIntegerEnvVar', () => {
     });
 
     it('should extract a predefined variable holding a integer', () => {
-        const NUMBER = extractIntegerEnvVar('INTEGER');
+        const INTEGER = extractIntegerEnvVar('INTEGER');
 
-        assert.equal(NUMBER, 2);
+        assert.equal(INTEGER, 2);
     });
 
     it('should not should extract a predefined variable holding a string', () => {
@@ -114,6 +115,44 @@ describe('extractIntegerEnvVar', () => {
     it('should not should extract a non-defined variable', () => {
         assert.throw(
             () => extractIntegerEnvVar('NON_DEFINED'),
+        );
+    });
+});
+
+describe('extractBooleanEnvVar', () => {
+    beforeEach(() => {
+        process.env.TRUE = '1';
+        process.env.FALSE = '0';
+        process.env.STRING = 'a';
+    });
+
+    afterEach(() => {
+        delete process.env.TRUE;
+        delete process.env.FALSE;
+        delete process.env.STRING;
+    });
+
+    it('should extract a predefined variable holding 1', () => {
+        const TRUE = extractBooleanEnvVar('TRUE');
+
+        assert.isTrue(TRUE);
+    });
+
+    it('should extract a predefined variable holding 0', () => {
+        const FALSE = extractBooleanEnvVar('FALSE');
+
+        assert.isFalse(FALSE);
+    });
+
+    it('should not should extract a predefined variable holding a string', () => {
+        assert.throw(
+            () => extractBooleanEnvVar('STRING'),
+        );
+    });
+
+    it('should not should extract a non-defined variable', () => {
+        assert.throw(
+            () => extractBooleanEnvVar('NON_DEFINED'),
         );
     });
 });
