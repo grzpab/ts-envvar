@@ -5,6 +5,7 @@ import {
 } from 'conditional-type-checks';
 import {
     assertNonNullable,
+    extractIntegerEnvVar,
     extractNonNullableEnvVar,
     extractNumberEnvVar,
 } from '../src';
@@ -83,6 +84,36 @@ describe('extractNumberEnvVar', () => {
     it('should not should extract a non-defined variable', () => {
         assert.throw(
             () => extractNumberEnvVar('NON_DEFINED'),
+        );
+    });
+});
+
+describe('extractIntegerEnvVar', () => {
+    beforeEach(() => {
+        process.env.INTEGER = '2';
+        process.env.STRING = 'a';
+    });
+
+    afterEach(() => {
+        delete process.env.INTEGER;
+        delete process.env.STRING;
+    });
+
+    it('should extract a predefined variable holding a integer', () => {
+        const NUMBER = extractIntegerEnvVar('INTEGER');
+
+        assert.equal(NUMBER, 2);
+    });
+
+    it('should not should extract a predefined variable holding a string', () => {
+        assert.throw(
+            () => extractIntegerEnvVar('STRING'),
+        );
+    });
+
+    it('should not should extract a non-defined variable', () => {
+        assert.throw(
+            () => extractIntegerEnvVar('NON_DEFINED'),
         );
     });
 });
