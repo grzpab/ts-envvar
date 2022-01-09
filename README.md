@@ -1,6 +1,6 @@
 # @grzpab/ts-envvar
 
-A library for managing environment variables in TypeScript projects
+A library for managing environment variables in TypeScript projects.
 
 ## Content
 The library contains five functions, one for asserting non-nullability and four 
@@ -15,8 +15,8 @@ These are the following:
 
 ### assertNonNullable
 This function acts as a TypeScript assertion for non-nullable values:
-* if the provided value is nullable, throw an error,
-* if the provided value is non-nullable, assert its type to be non-nullable.
+* if the provided value is nullable, it throws an error,
+* if the provided value is non-nullable, it asserts its type to be non-nullable.
 
 An exemplary usage:
 ```typescript
