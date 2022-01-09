@@ -5,6 +5,11 @@
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "author": "grzpab",
+  "keywords": [
+    "typescript",
+    "environment",
+    "envvar"
+  ],
   "files": [
     "dist/src"
   ],
